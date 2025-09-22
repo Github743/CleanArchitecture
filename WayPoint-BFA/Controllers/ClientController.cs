@@ -17,5 +17,16 @@ namespace WayPoint_BFA.Controllers
             var rows = await _service.GetClientsAsync(clientSearch, ct);
             return Ok(rows);
         }
+
+        //[HttpGet("Client/{clientId:int}")]
+        //public async Task<ActionResult<ClientDetail>> GetClient(int clientId, CancellationToken ct = default)
+        //{
+        //    var client = await _service.GetClient(clientId, ct);
+
+        //    if (client == null)
+        //        return NotFound();
+
+        //    return Ok(client);
+        //}
     }
 }

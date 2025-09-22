@@ -3,7 +3,9 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using WayPoint.Model;
+using WayPoint.Model.Enhanced;
 using WayPoint.Model.Helper;
+using WayPoint.Model.ViewModels;
 using WayPoint_Infrastructure.Data;
 using WayPoint_Infrastructure.Helpers;
 using WayPoint_Infrastructure.Interfaces;
@@ -494,6 +496,27 @@ namespace WayPoint_Infrastructure.Repositories
             {
                 throw;
             }
+        }
+        public async Task<IReadOnlyList<WorkOrder>> GetPendingWorkOrdersbyContext(int? Filter, int? systemworkorderid, bool isClientContext, CancellationToken ct = default)
+        {
+            IReadOnlyList<WorkOrder> workOrders = Array.Empty<WorkOrder>();
+
+            if (isClientContext)
+            {
+                var results = await _sql.RetrieveObjectsAsync<WorkOrder>(
+                    new { ClientId = Filter, SystemWorkOrderId = systemworkorderid }, ct);
+
+                workOrders = results.ToList();
+            }
+            return workOrders;
+        }
+        public async Task<List<SystemWorkOrderGroup>> GetSystemWorkOrderGroup(int systemWorkOrderId, CancellationToken ct = default)
+        {
+            List<SystemWorkOrderGroup> systemWorkOrderGroup = new();
+
+            var result = await _sql.RetrieveObjectsAsync<SystemWorkOrderGroup>(
+                new { SystemWorkOrderId = systemWorkOrderId }, ct);
+            return systemWorkOrderGroup;
         }
 
     }

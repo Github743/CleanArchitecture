@@ -24,6 +24,7 @@ builder.Services.AddScoped<ISystemWorkOrderRepository, SystemWorkOrderRepository
 builder.Services.AddScoped<IWorkOrder, WorkorderRepository>();
 builder.Services.AddScoped<ISystemDiscountRepository, SystemDiscountRepository>();
 builder.Services.AddScoped<ILookUpRepository, LookUpRepository>();
+builder.Services.AddScoped<IClientAgreementRepository, ClientAgreementRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

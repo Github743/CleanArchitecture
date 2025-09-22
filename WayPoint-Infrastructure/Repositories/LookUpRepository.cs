@@ -23,7 +23,7 @@ namespace WayPoint_Infrastructure.Repositories
                 // null/empty default result
                 var empty = Array.Empty<Lookup>();
                 //lookupTypebyName = "ProductGroupType";
-                lookupTypebyName = "DiscountType";
+                //lookupTypebyName = "DiscountType";
                 // fetch agreement (pass anonymous object for parameter)
                 var lookups = await _sql.RetrieveObjectsAsync<Lookup>(
                     new { LookupTypeName = lookupTypebyName },
